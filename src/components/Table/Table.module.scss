@@ -1,8 +1,10 @@
 .table {
   margin-top: 24px;
   padding-left: 32px;
-  height: '100vh - 30px';
-  width: '100%';
+  height: calc(100vh - 104px);
+  padding-bottom: 80px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header {

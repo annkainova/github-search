@@ -4,9 +4,11 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { useDispatch } from 'react-redux';
 import { setSearchQuery } from '../../state/slice/QuerySlice';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [query, setQuery] = useState('');
   const [queryLocal, setValueLocalStorge] = useLocalStorage('searchQuery');
@@ -24,6 +26,7 @@ const SearchBar: React.FC = () => {
     const trimmedQuery = query.trim();
     setValueLocalStorge(trimmedQuery);
     dispatch(setSearchQuery(trimmedQuery));
+    navigate('/');
   };
 
   return (

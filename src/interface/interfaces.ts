@@ -11,3 +11,14 @@ export interface RepoInfo {
     name: string;
   };
 }
+
+export interface ChosenRepo {
+  description: string;
+  forks: number;
+  id: number;
+  language: string;
+  license: string;
+  name: string;
+  stars: number;
+  updatedAt: string;
+}

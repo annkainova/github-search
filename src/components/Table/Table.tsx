@@ -3,11 +3,13 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { idID } from '@mui/material/locale';
 import { useSearchRepositoriesQuery } from '../../api/getRepo';
 import { Repo } from '../../interface/interfaces';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
 import { Container, Grid } from '@mui/material';
 
 import classes from './Table.module.scss';
+import { setChosenRepo } from '../../state/slice/chosenRepo';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const columns: GridColDef[] = [
   {
@@ -39,14 +41,14 @@ const columns: GridColDef[] = [
   {
     field: 'updatedAt',
     headerName: 'Дата обновления',
-    // description: 'This column has a value getter and is not sortable.',
-    // sortable: false,
     width: 200,
-    // valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
   },
 ];
 
 export default function DataTable() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const searchQuery = useSelector(
     (state: RootState) => state.searchQuery.searchQuery
   );
@@ -56,12 +58,13 @@ export default function DataTable() {
     first: 20,
   });
 
-  console.log('Data:', data);
-
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error occurred: {error.message}</p>;
 
-  const rows = [];
+  function handleRowClick(params) {
+    dispatch(setChosenRepo(params.row));
+    navigate(`/repo/${params.id}`);
+  }
 
   const repo = data.data.search.edges.map((edge, index) => {
     const {
@@ -76,11 +79,11 @@ export default function DataTable() {
 
     return {
       id: index,
-      name: name || 'Unknown', // Заменить null значением по умолчанию
+      name: name || 'Unknown',
       description: description || 'No description available',
-      stars: stargazerCount,
-      forks: forkCount,
-      language: primaryLanguage ? primaryLanguage.name : 'Unknown',
+      stargazerCount: stargazerCount,
+      forkCount: forkCount,
+      primaryLanguage: primaryLanguage ? primaryLanguage.name : 'Unknown',
       updatedAt: new Date(updatedAt).toLocaleDateString(),
       license: licenseInfo ? licenseInfo.name : 'No license',
     };
@@ -102,8 +105,12 @@ export default function DataTable() {
               },
             }}
             pageSizeOptions={[5, 10, 25]}
+            onRowClick={handleRowClick}
           />
         </div>
+      </Grid>
+      <Grid item xs={4}>
+        <Outlet />
       </Grid>
     </Grid>
   );

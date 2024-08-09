@@ -1,6 +1,8 @@
+import { Outlet } from 'react-router-dom';
 import { useSearchRepositoriesQuery } from '../../api/getRepo';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import DataTable from '../../components/Table/Table';
+import { Grid } from '@mui/material';
 
 const SearchPage = () => {
   const { data, error, isLoading } = useSearchRepositoriesQuery({
@@ -16,6 +18,7 @@ const SearchPage = () => {
   return (
     <>
       <SearchBar />
+
       <DataTable />
     </>
     // <div>

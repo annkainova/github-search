@@ -106,3 +106,9 @@ li {
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gap);
 }
+
+
+.flex {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
