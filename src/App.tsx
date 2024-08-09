@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import { Box } from '@mui/material';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { store } from './state/store';
@@ -14,15 +10,15 @@ const router = createBrowserRouter([
     element: <SearchPage />,
   },
   // {
-/*     path: 'search/:pageNumber',
+  /*     path: 'search/:pageNumber',
     element: <SearchScreen />, */
-    // errorElement:/*  <ErrorPage />, */
-    // children: [
-    //   {
-    //     path: 'card/:cardId',
-    //     element: <DetailedInformation />,
-    //   },
-    // ],
+  // errorElement:/*  <ErrorPage />, */
+  // children: [
+  //   {
+  //     path: 'card/:cardId',
+  //     element: <DetailedInformation />,
+  //   },
+  // ],
   // },
   // {
   //   path: '*',
