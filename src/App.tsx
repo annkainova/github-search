@@ -27,8 +27,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Provider store={store}>
       <RouterProvider router={router} />

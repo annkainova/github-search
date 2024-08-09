@@ -1,9 +1,13 @@
-import { Box, Button, Container, Input, TextField } from '@mui/material';
-import classes from './SearchBar.scss';
+import { Button, Container, Grid, TextField } from '@mui/material';
+import classes from './SearchBar.module.scss';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { useDispatch } from 'react-redux';
+import { setSearchQuery } from '../../state/slice/QuerySlice';
 
 const SearchBar: React.FC = () => {
+  const dispatch = useDispatch();
+
   const [query, setQuery] = useState('');
   const [queryLocal, setValueLocalStorge] = useLocalStorage('searchQuery');
 
@@ -19,28 +23,44 @@ const SearchBar: React.FC = () => {
     e.preventDefault();
     const trimmedQuery = query.trim();
     setValueLocalStorge(trimmedQuery);
-    console.log(trimmedQuery);
+    dispatch(setSearchQuery(trimmedQuery));
   };
 
   return (
-    <Container component="main" maxWidth="lg">
-      <form onSubmit={handleSubmit} noValidate>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          id="search"
-          name="search"
-          placeholder="Search More"
-          onChange={handleChange}
-          value={query}
-        />
+    <div className={classes.wrapper}>
+      <Grid container spacing={2}>
+        <Grid item xs={9}>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <TextField
+              variant="outlined"
+              // margin="normal"
+              fullWidth
+              id="search"
+              name="search"
+              placeholder="Поисковый запрос"
+              onChange={handleChange}
+              value={query}
+              size="small"
+              sx={{
+                input: {
+                  background: 'white',
+                  borderRadius: '4px',
+                },
+              }}
+            />
 
-        <Button type="submit" fullWidth variant="contained" color="primary">
-          Sign In
-        </Button>
-      </form>
-    </Container>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="small"
+            >
+              Искать
+            </Button>
+          </form>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 

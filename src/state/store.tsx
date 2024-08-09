@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { githubApi } from '../api/getRepo';
+import SearchQueryReducer from './slice/QuerySlice';
 
 export const store = configureStore({
   reducer: {
+    searchQuery: SearchQueryReducer,
     [githubApi.reducerPath]: githubApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

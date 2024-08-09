@@ -1,0 +1,12 @@
+.table {
+  margin-top: 24px;
+  padding-left: 32px;
+  height: '100vh - 30px';
+  width: '100%';
+}
+
+.header {
+  margin-bottom: 24px;
+  font-family: var(--font-family), sans-serif;
+  font-size: var(--main-title-size, 48px);
+}

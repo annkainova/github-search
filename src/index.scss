@@ -1,11 +1,11 @@
-@import 'https: //fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import '../node_modules/modern-normalize/modern-normalize.css';
 
 :root {
   /* base */
   --font-family: 'Roboto', sans-serif;
   --content-width: 1125px;
-  --container-offset: 20px;
+  --container-offset: 0px;
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
 
   /* colors */
@@ -19,7 +19,7 @@
   --second-font-size: 14px;
   --third-font-size: 18px;
   --title-font-size: 24px;
-  --main-title-size: 52px;
+  --main-title-size: 48px;
 }
 
 * {
@@ -54,7 +54,8 @@ body {
   height: 100%;
   min-width: 360px;
   font-family: var(--font-family), sans-serif;
-  font-size: var(--main-font-size, 16px);
+  font-size: var(--main-font-size, 14px);
+
 }
 
 .darkMode {
