@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
-import { Chip, Grid } from '@mui/material';
+import { Chip } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import classes from './Detail.module.scss';
 import { useEffect } from 'react';
@@ -39,6 +39,7 @@ const Detail = () => {
       )}
 
       <p className={classes.detail__description}>{chosenRepo?.description}</p>
+      <p className={classes.detail__license}>{chosenRepo?.license}</p>
     </div>
   );
 };

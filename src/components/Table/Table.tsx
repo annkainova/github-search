@@ -9,7 +9,7 @@ import { setChosenRepo } from '../../state/slice/chosenRepo';
 import { Outlet, useNavigate } from 'react-router-dom';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { setSearchQuery } from '../../state/slice/QuerySlice';
-import { Grid } from '@mui/material';
+import { CircularProgress, Grid, LinearProgress } from '@mui/material';
 
 const columns: GridColDef[] = [
   {
@@ -54,7 +54,7 @@ export default function DataTable() {
     (state: RootState) => state.searchQuery.searchQuery
   );
 
-  const { data, error, isLoading } = useSearchRepositoriesQuery({
+  const { data, error, isFetching } = useSearchRepositoriesQuery({
     queryString: searchQuery,
     first: 20,
   });
@@ -65,13 +65,17 @@ export default function DataTable() {
     }
   }, [dispatch, queryLocal]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isFetching)
+    return (
+      <div className="loader">
+        <CircularProgress />
+      </div>
+    );
   if (error) return <p>Error occurred: {error.message}</p>;
 
   function handleRowClick(params) {
     dispatch(setChosenRepo(params.row));
     navigate(`repo/${params.id}`);
-
   }
 
   const repo = data.data.search.edges.map((edge, index) => {
@@ -104,17 +108,22 @@ export default function DataTable() {
       <Grid item xs={8}>
         <div className={classes.table}>
           <h2 className={classes.header}>Результаты поиска</h2>
-          <DataGrid
-            rows={repo}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 10 },
-              },
-            }}
-            pageSizeOptions={[5, 10, 25]}
-            onRowClick={handleRowClick}
-          />
+
+          {repo.length ? (
+            <DataGrid
+              rows={repo}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: { page: 0, pageSize: 10 },
+                },
+              }}
+              pageSizeOptions={[5, 10, 25]}
+              onRowClick={handleRowClick}
+            />
+          ) : (
+            'Репозитории не найдены.'
+          )}
         </div>
       </Grid>
       <Grid item xs={4}>

@@ -95,27 +95,20 @@ li {
   min-height: 100%;
 }
 
-.container {
-  margin: 0 auto;
-  padding: 0 var(--container-offset);
-  max-width: var(--container-width);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--gap);
-}
 
 
-.flex {
-  display: grid;
-  grid-template-columns: max-content auto;
-}
 
 .h1 {
   font-size: 46px;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.17px;
+}
+
+.loader {
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
