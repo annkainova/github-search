@@ -1,3 +1,24 @@
 .detail {
   padding: 24px;
+
+  &__name {
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+
+  &__description {
+    margin-top: 27px;
+  }
+}
+
+.star {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

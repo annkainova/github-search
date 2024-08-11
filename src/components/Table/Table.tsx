@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { idID } from '@mui/material/locale';
 import { useSearchRepositoriesQuery } from '../../api/getRepo';
-import { Repo } from '../../interface/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
-import { Container, Grid } from '@mui/material';
 
 import classes from './Table.module.scss';
 import { setChosenRepo } from '../../state/slice/chosenRepo';
 import { Outlet, useNavigate } from 'react-router-dom';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { setSearchQuery } from '../../state/slice/QuerySlice';
+import { Grid } from '@mui/material';
 
 const columns: GridColDef[] = [
   {
@@ -46,6 +46,7 @@ const columns: GridColDef[] = [
 ];
 
 export default function DataTable() {
+  const [queryLocal, ,] = useLocalStorage('searchQuery');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -58,12 +59,19 @@ export default function DataTable() {
     first: 20,
   });
 
+  React.useMemo(() => {
+    if (queryLocal) {
+      dispatch(setSearchQuery(queryLocal));
+    }
+  }, [dispatch, queryLocal]);
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error occurred: {error.message}</p>;
 
   function handleRowClick(params) {
     dispatch(setChosenRepo(params.row));
-    navigate(`/repo/${params.id}`);
+    navigate(`repo/${params.id}`);
+
   }
 
   const repo = data.data.search.edges.map((edge, index) => {

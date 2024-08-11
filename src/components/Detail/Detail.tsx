@@ -3,33 +3,42 @@ import { RootState } from '../../state/store';
 import { Chip, Grid } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import classes from './Detail.module.scss';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { amber } from '@mui/material/colors';
 
 const Detail = () => {
+  const navigate = useNavigate();
   const chosenRepo = useSelector(
     (state: RootState) => state.chosenRepo.chosenRepo
   );
 
-  console.log('chosenRepo', chosenRepo);
+  useEffect(() => {
+    if (!chosenRepo) {
+      navigate('/search');
+    }
+  }, [chosenRepo, navigate]);
+
   return (
     <div className={classes.detail}>
-      <h2>{chosenRepo?.name}</h2>
+      <h3 className={classes.detail__name}>{chosenRepo?.name}</h3>
 
-      {/* {chosenRepo && ( */}
-      <div>
-        <Chip
-          color="primary"
-          variant="filled"
-          size="medium"
-          label={chosenRepo?.primaryLanguage}
-        />
-        <p>
-          <StarIcon />
-          {chosenRepo?.stargazerCount || 0}
-        </p>
-      </div>
-      {/* )} */}
+      {chosenRepo && (
+        <div className={classes.detail__info}>
+          <Chip
+            color="primary"
+            variant="filled"
+            size="medium"
+            label={chosenRepo?.primaryLanguage}
+          />
+          <div className={classes.star}>
+            <StarIcon sx={{ color: amber[500] }} />
+            {chosenRepo?.stargazerCount || 0}
+          </div>
+        </div>
+      )}
 
-      <p>{chosenRepo?.description}</p>
+      <p className={classes.detail__description}>{chosenRepo?.description}</p>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField } from '@mui/material';
 import classes from './SearchBar.module.scss';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -15,7 +15,6 @@ const SearchBar: React.FC = () => {
 
   useEffect(() => {
     setQuery(queryLocal);
-    navigate('/');
   }, [navigate, queryLocal]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +26,7 @@ const SearchBar: React.FC = () => {
     const trimmedQuery = query.trim();
     setValueLocalStorge(trimmedQuery);
     dispatch(setSearchQuery(trimmedQuery));
-    navigate('/');
+    navigate('/search');
   };
 
   return (
@@ -37,7 +36,6 @@ const SearchBar: React.FC = () => {
           <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
               variant="outlined"
-              // margin="normal"
               fullWidth
               id="search"
               name="search"
