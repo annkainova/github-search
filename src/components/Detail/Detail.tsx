@@ -14,20 +14,20 @@ const Detail = () => {
     <div className={classes.detail}>
       <h2>{chosenRepo?.name}</h2>
 
-      {chosenRepo && (
-        <div>
-          <Chip
-            color="primary"
-            variant="filled"
-            size="medium"
-            label={chosenRepo?.language || 'Неизвестно'}
-          />
-          <p>
-            <StarIcon />
-            {chosenRepo?.stars || 0}
-          </p>
-        </div>
-      )}
+      {/* {chosenRepo && ( */}
+      <div>
+        <Chip
+          color="primary"
+          variant="filled"
+          size="medium"
+          label={chosenRepo?.primaryLanguage}
+        />
+        <p>
+          <StarIcon />
+          {chosenRepo?.stargazerCount || 0}
+        </p>
+      </div>
+      {/* )} */}
 
       <p>{chosenRepo?.description}</p>
     </div>

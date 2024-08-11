@@ -14,11 +14,11 @@ export interface RepoInfo {
 
 export interface ChosenRepo {
   description: string;
-  forks: number;
+  forkCount: number;
   id: number;
-  language: string;
   license: string;
   name: string;
-  stars: number;
+  primaryLanguage: string;
+  stargazerCount: number;
   updatedAt: string;
 }

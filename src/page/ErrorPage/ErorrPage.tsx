@@ -1,15 +1,15 @@
+import { Button } from '@mui/material';
 import { useNavigate, useRouteError } from 'react-router-dom';
-// import Button from '../../components/ui/button/Button';
 
 const ErrorPage = () => {
   const error = useRouteError() as Error;
   console.error('mistake!!:', error);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleClickReturn = () => {
-  //   navigate('/search/1');
-  // };
+  const handleClickReturn = () => {
+    navigate('/search/1');
+  };
 
   return (
     <div id="error-page">
@@ -18,9 +18,7 @@ const ErrorPage = () => {
       <p>
         <i>{error && error.message}</i>
       </p>
-      {/* <Button isMain={true} onClick={handleClickReturn}>
-        Return to main
-      </Button> */}
+      <Button>Return to main</Button>
     </div>
   );
 };

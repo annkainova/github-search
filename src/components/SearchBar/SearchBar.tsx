@@ -15,7 +15,8 @@ const SearchBar: React.FC = () => {
 
   useEffect(() => {
     setQuery(queryLocal);
-  }, [queryLocal]);
+    navigate('/');
+  }, [navigate, queryLocal]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);

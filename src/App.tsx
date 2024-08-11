@@ -5,6 +5,7 @@ import { store } from './state/store';
 import SearchPage from './page/SearchPage/SearchPage';
 import ErrorPage from './page/ErrorPage/ErorrPage';
 import Detail from './components/Detail/Detail';
+import NotFoundPage from './page/notFoundPage/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -18,21 +19,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  /*     path: 'search/:pageNumber',
-    element: <SearchScreen />, */
-  // errorElement:/*  <ErrorPage />, */
-  // children: [
-  //   {
-  //     path: 'card/:cardId',
-  //     element: <DetailedInformation />,
-  //   },
-  // ],
-  // },
-  // {
-  //   path: '*',
-  //   element: <NotFoundPage />,
-  // },
+  {
+    path: '*',
+    element: <NotFoundPage />,
+  },
 ]);
 
 function App() {

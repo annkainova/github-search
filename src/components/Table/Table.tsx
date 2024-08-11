@@ -92,7 +92,7 @@ export default function DataTable() {
   console.log('repo', repo);
 
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       <Grid item xs={8}>
         <div className={classes.table}>
           <h2 className={classes.header}>Результаты поиска</h2>
@@ -110,7 +110,9 @@ export default function DataTable() {
         </div>
       </Grid>
       <Grid item xs={4}>
-        <Outlet />
+        <div className={classes.outlet}>
+          <Outlet />
+        </div>
       </Grid>
     </Grid>
   );
