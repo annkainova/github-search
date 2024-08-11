@@ -9,7 +9,8 @@ import { setChosenRepo } from '../../state/slice/chosenRepo';
 import { Outlet, useNavigate } from 'react-router-dom';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { setSearchQuery } from '../../state/slice/QuerySlice';
-import { CircularProgress, Grid, LinearProgress } from '@mui/material';
+import { CircularProgress, Grid } from '@mui/material';
+import { ChosenRepo, RepoInfo } from '../../interface/interfaces';
 
 const columns: GridColDef[] = [
   {
@@ -71,35 +72,40 @@ export default function DataTable() {
         <CircularProgress />
       </div>
     );
-  if (error) return <p>Error occurred: {error.message}</p>;
+  if (error instanceof Error) return <p>Error occurred: {error.message}</p>;
 
-  function handleRowClick(params) {
+  function handleRowClick(params: { row: ChosenRepo }) {
     dispatch(setChosenRepo(params.row));
-    navigate(`repo/${params.id}`);
+    navigate(`repo/${params.row.id}`);
   }
 
-  const repo = data.data.search.edges.map((edge, index) => {
-    const {
-      name,
-      description,
-      stargazerCount,
-      forkCount,
-      primaryLanguage,
-      updatedAt,
-      licenseInfo,
-    } = edge.node;
+  console.log();
 
-    return {
-      id: index,
-      name: name || 'Unknown',
-      description: description || 'No description available',
-      stargazerCount: stargazerCount,
-      forkCount: forkCount,
-      primaryLanguage: primaryLanguage ? primaryLanguage.name : 'Unknown',
-      updatedAt: new Date(updatedAt).toLocaleDateString(),
-      license: licenseInfo ? licenseInfo.name : 'No license',
-    };
-  });
+  const repo = data.data.search.edges.map(
+    (repo: RepoInfo, index: number): ChosenRepo => {
+      console.log('edge', repo);
+      const {
+        name,
+        description,
+        stargazerCount,
+        forkCount,
+        primaryLanguage,
+        updatedAt,
+        licenseInfo,
+      } = repo.node;
+
+      return {
+        id: index,
+        name: name || 'Unknown',
+        description: description || 'No description available',
+        stargazerCount: stargazerCount,
+        forkCount: forkCount,
+        primaryLanguage: primaryLanguage ? primaryLanguage.name : 'Unknown',
+        updatedAt: new Date(updatedAt).toLocaleDateString(),
+        license: licenseInfo ? licenseInfo.name : 'No license',
+      };
+    }
+  );
 
   console.log('repo', repo);
 

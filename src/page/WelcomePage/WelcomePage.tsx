@@ -1,4 +1,3 @@
-import { Container } from '@mui/material';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import classes from './WelcomePage.module.scss';
 

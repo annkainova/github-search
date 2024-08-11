@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { store } from './state/store';
@@ -13,12 +12,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <WelcomePage />,
     errorElement: <ErrorPage />,
-    // children: [
-    //   {
-    //     path: 'search',
-    //     element: <Detail />,
-    //   },
-    // ],
   },
   {
     path: '/search',
@@ -31,17 +24,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  /*     path: 'search/:pageNumber',
-    element: <SearchScreen />, */
-  // errorElement:/*  <ErrorPage />, */
-  // children: [
-  //   {
-  //     path: 'card/:cardId',
-  //     element: <DetailedInformation />,
-  //   },
-  // ],
-  // },
   {
     path: '*',
     element: <NotFoundPage />,
