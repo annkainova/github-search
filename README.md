@@ -1,50 +1,36 @@
-# React + TypeScript + Vite
+# Repository Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repository Search — это веб-приложение, которое позволяет пользователям искать репозитории на GitHub по различным критериям. Приложение использует GraphQL API GitHub для получения и отображения данных о репозиториях в удобном интерфейсе.
 
-Currently, two official plugins are available:
+## Используемые технологии
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- Redux Toolkit
+- Material-UI
+- TypeScript
+- GraphQL API GitHub
 
-## Expanding the ESLint configuration
+## Начало работы
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Предварительные требования
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js
+- npm (Node Package Manager)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+### Установка
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Клонируйте репозиторий:
+   `git clone git@github.com:annkainova/github-search.git`
+2. Перейдите в каталог проекта:
+3. Установите зависимости:
+   `npm install`
+4. Запустите сервер разработки:
+   `npm run dev`
+5. Откройте браузер и перейдите по адресу:
+   http://localhost:5174/
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+### Использование
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+Введите ваш поисковый запрос в строку поиска и нажмите кнопку "Поиск".
+Просмотрите результаты поиска, отображаемые в таблице.
+Нажмите на репозиторий, чтобы увидеть более подробную информацию.
