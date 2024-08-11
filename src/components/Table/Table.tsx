@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { useSearchRepositoriesQuery } from '../../api/getRepo';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
@@ -11,41 +11,9 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { setSearchQuery } from '../../state/slice/QuerySlice';
 import { CircularProgress, Grid } from '@mui/material';
 import { ChosenRepo, RepoInfo } from '../../interface/interfaces';
+import { columns } from './TableSetting';
 
-const columns: GridColDef[] = [
-  {
-    field: 'name',
-    headerName: 'Название',
-    width: 400,
-    sortable: false,
-    filterable: false,
-  },
-  {
-    field: 'primaryLanguage',
-    headerName: 'Язык',
-    width: 130,
-    sortable: false,
-    filterable: false,
-  },
-  {
-    field: 'forkCount',
-    headerName: 'Число форков',
-    width: 180,
-    type: 'number',
-  },
-  {
-    field: 'stargazerCount',
-    headerName: 'Число звезд',
-    type: 'number',
-    width: 200,
-  },
-  {
-    field: 'updatedAt',
-    headerName: 'Дата обновления',
-    width: 200,
-  },
-];
-
+// Компонент DataTable: отвечает за отображение данных в таблице и обработку кликов по строкам
 export default function DataTable() {
   const [queryLocal, ,] = useLocalStorage('searchQuery');
   const navigate = useNavigate();
@@ -55,31 +23,34 @@ export default function DataTable() {
     (state: RootState) => state.searchQuery.searchQuery
   );
 
+  // Выполнение запроса к API для получения списка репозиториев
   const { data, error, isFetching } = useSearchRepositoriesQuery({
     queryString: searchQuery,
-    first: 20,
+    first: 100,
   });
 
+  // useMemo для обновления поискового запроса при изменении значения из localStorage
   React.useMemo(() => {
     if (queryLocal) {
       dispatch(setSearchQuery(queryLocal));
     }
   }, [dispatch, queryLocal]);
 
+  // Отображение индикатора загрузки, если данные загружаются
   if (isFetching)
     return (
       <div className="loader">
         <CircularProgress />
       </div>
     );
+
+  // Отображение сообщения об ошибке, если произошла ошибка при запросе
   if (error instanceof Error) return <p>Error occurred: {error.message}</p>;
 
   function handleRowClick(params: { row: ChosenRepo }) {
     dispatch(setChosenRepo(params.row));
     navigate(`repo/${params.row.id}`);
   }
-
-  console.log();
 
   const repo = data.data.search.edges.map(
     (repo: RepoInfo, index: number): ChosenRepo => {

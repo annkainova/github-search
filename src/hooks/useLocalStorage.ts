@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+//  Хук для работы с локальным хранилищем (localStorage).
 const useLocalStorage = (key: string, initialValue: string = '') => {
   const [storedValue, setStoredValue] = useState(() => {
     try {

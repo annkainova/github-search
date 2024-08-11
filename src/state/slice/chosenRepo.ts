@@ -17,10 +17,6 @@ const chosenRepoSlice = createSlice({
       const newState = state;
       newState.chosenRepo = action.payload;
     },
-    // clearChosenRepo(state) {
-    //   const newState = state;
-    //   newState.chosenRepo = '';
-    // },
   },
 });
 

@@ -1,3 +1,4 @@
+// Интерфейс, представляющий информацию о репозитории, возвращаемую GitHub API
 export interface RepoInfo {
   node: {
     name: string;
@@ -14,6 +15,7 @@ export interface RepoInfo {
   };
 }
 
+// Интерфейс, представляющий информацию о выбранном репозитории
 export interface ChosenRepo {
   description: string;
   forkCount: number;

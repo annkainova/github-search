@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setSearchQuery } from '../../state/slice/QuerySlice';
 import { useNavigate } from 'react-router-dom';
 
+// Компонент SearchBar: отвечает за отображение и обработку поисковой строки
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const SearchBar: React.FC = () => {
   const [query, setQuery] = useState('');
   const [queryLocal, setValueLocalStorge] = useLocalStorage('searchQuery');
 
+  // useEffect для установки начального значения из localStorage при загрузке компонента
   useEffect(() => {
     setQuery(queryLocal);
   }, [navigate, queryLocal]);

@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { store } from './state/store';
 import SearchPage from './page/SearchPage/SearchPage';
-import ErrorPage from './page/ErrorPage/ErorrPage';
+import ErrorPage from './page/ErrorPage/ErrorPage';
 import Detail from './components/Detail/Detail';
 import NotFoundPage from './page/notFoundPage/NotFoundPage';
 import WelcomePage from './page/WelcomePage/WelcomePage';

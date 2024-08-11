@@ -7,12 +7,15 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { amber } from '@mui/material/colors';
 
+// Компонент Detail: отображает подробную информацию о выбранном репозитории
+
 const Detail = () => {
   const navigate = useNavigate();
   const chosenRepo = useSelector(
     (state: RootState) => state.chosenRepo.chosenRepo
   );
 
+  // Использование эффекта для перенаправления на страницу поиска, если выбранный репозиторий не определен
   useEffect(() => {
     if (!chosenRepo) {
       navigate('/search');

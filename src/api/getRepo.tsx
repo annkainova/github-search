@@ -1,5 +1,7 @@
-// api/getRepo.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { RepoInfo } from '../interface/interfaces';
+
+// Создание API-сервиса для взаимодействия с GitHub GraphQL API
 
 export const githubApi = createApi({
   reducerPath: 'githubApi',
@@ -12,7 +14,7 @@ export const githubApi = createApi({
   }),
   endpoints: (builder) => ({
     searchRepositories: builder.query<
-      any,
+      { data: RepoInfo[] },
       { queryString: string; first: number; after?: string }
     >({
       query: ({ queryString, first, after }) => ({
