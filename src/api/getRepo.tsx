@@ -8,7 +8,10 @@ export const githubApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.github.com/graphql',
     prepareHeaders: (headers) => {
-      headers.set('Authorization', `Bearer `);
+      headers.set(
+        'Authorization',
+        `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`
+      );
       return headers;
     },
   }),
