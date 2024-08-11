@@ -7,6 +7,8 @@ import Detail from './components/Detail/Detail';
 import NotFoundPage from './page/notFoundPage/NotFoundPage';
 import WelcomePage from './page/WelcomePage/WelcomePage';
 
+
+
 const router = createBrowserRouter([
   {
     path: '/',

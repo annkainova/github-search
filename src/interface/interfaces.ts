@@ -15,6 +15,13 @@ export interface RepoInfo {
   };
 }
 
+// Интерфейс, представляющий информацию об данных возвращаемых GitHub API
+export interface RepositoriesResponse {
+  search: {
+    edges: RepoInfo[];
+  };
+}
+
 // Интерфейс, представляющий информацию о выбранном репозитории
 export interface ChosenRepo {
   description: string;

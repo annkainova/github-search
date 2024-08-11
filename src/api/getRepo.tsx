@@ -1,23 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { RepoInfo } from '../interface/interfaces';
+import { RepositoriesResponse } from '../interface/interfaces';
 
 // Создание API-сервиса для взаимодействия с GitHub GraphQL API
+export const clientSecret = import.meta.env.VITE_CLIENT_SECRET || '';
+console.log('clientSecret', clientSecret);
 
 export const githubApi = createApi({
   reducerPath: 'githubApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.github.com/graphql',
     prepareHeaders: (headers) => {
-      headers.set(
-        'Authorization',
-        `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`
-      );
+      headers.set('Authorization', `Bearer ${clientSecret}`);
       return headers;
     },
   }),
   endpoints: (builder) => ({
     searchRepositories: builder.query<
-      { data: RepoInfo[] },
+      { data: RepositoriesResponse },
       { queryString: string; first: number; after?: string }
     >({
       query: ({ queryString, first, after }) => ({

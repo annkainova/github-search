@@ -4,14 +4,14 @@ export const columns: GridColDef[] = [
   {
     field: 'name',
     headerName: 'Название',
-    width: 400,
+    width: 360,
     sortable: false,
     filterable: false,
   },
   {
     field: 'primaryLanguage',
     headerName: 'Язык',
-    width: 130,
+    width: 150,
     sortable: false,
     filterable: false,
   },
@@ -25,11 +25,11 @@ export const columns: GridColDef[] = [
     field: 'stargazerCount',
     headerName: 'Число звезд',
     type: 'number',
-    width: 200,
+    width: 180,
   },
   {
     field: 'updatedAt',
     headerName: 'Дата обновления',
-    width: 200,
+    width: 180,
   },
 ];

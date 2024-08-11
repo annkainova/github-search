@@ -29,7 +29,7 @@ Repository Search — это веб-приложение, которое поз�
 
 - Получите ваш GitHub Personal Access Token, следуя инструкциям [[здесь](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)].
   Создайте файл .env:
-  REACT_APP_GITHUB_TOKEN=ваш токен доступа
+  VITE_CLIENT_SECRET=ваш токен доступа
 
 5. Запустите сервер разработки:
    `npm run dev`

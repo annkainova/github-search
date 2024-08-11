@@ -52,9 +52,8 @@ export default function DataTable() {
     navigate(`repo/${params.row.id}`);
   }
 
-  const repo = data.data.search.edges.map(
+  const repo = data?.data.search.edges.map(
     (repo: RepoInfo, index: number): ChosenRepo => {
-      console.log('edge', repo);
       const {
         name,
         description,
@@ -78,15 +77,13 @@ export default function DataTable() {
     }
   );
 
-  console.log('repo', repo);
-
   return (
     <Grid container spacing={2}>
       <Grid item xs={8}>
         <div className={classes.table}>
           <h2 className={classes.header}>Результаты поиска</h2>
 
-          {repo.length ? (
+          {repo?.length ? (
             <DataGrid
               rows={repo}
               columns={columns}
