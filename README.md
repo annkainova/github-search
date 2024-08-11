@@ -1,5 +1,5 @@
 # Repository Search
-[Repository Search](https://github-search-repositori.vercel.app/)
+[Repository Search](https://github-search-repository.netlify.app/)
 
 Repository Search — это веб-приложение, которое позволяет пользователям искать репозитории на GitHub по различным критериям. Приложение использует GraphQL API GitHub для получения и отображения данных о репозиториях в удобном интерфейсе.
 
